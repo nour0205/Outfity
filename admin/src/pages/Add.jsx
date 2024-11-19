@@ -1,9 +1,7 @@
-
-
 function Add() {
   return (
     <div>
-      
+      Hello there
     </div>
   )
 }
