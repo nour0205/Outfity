@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />
-      {token === " " 
+      {token === "" 
         ? <Login setToken={setToken} />
         : <>
           <Navbar setToken={setToken} />
