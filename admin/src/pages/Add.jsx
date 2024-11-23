@@ -13,10 +13,10 @@ function Add({ token }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
-  const [bestSeller, setBestSeller] = useState("");
-  const [sizes, setSizes] = useState("");
+  const [category, setCategory] = useState("Men");
+  const [subCategory, setSubCategory] = useState("Topwear");
+  const [bestseller, setBestSeller] = useState(false);
+  const [sizes, setSizes] = useState([]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ function Add({ token }) {
       formData.append("price", price);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
-      formData.append("bestSeller", bestSeller);
+      formData.append("bestseller", bestseller);
       formData.append("sizes", JSON.stringify(sizes));
 
       image1 && formData.append("image1", image1);
@@ -41,19 +41,22 @@ function Add({ token }) {
         backendUrl + "/api/product/add",
         formData,
         { headers: { token } }
+        
       );
 
-      if (!response.data.success) {
+      console.log(response.data)
+
+      if (response.data.success) {
         toast.success(response.data.message);
-        setName("");
-        setDescription("");
+        setName('');
+        setDescription('');
         setImage1(false);
         setImage2(false);
         setImage3(false);
         setImage4(false);
-        setPrice("");
+        setPrice('');
       } else {
-        toast.error(response.data.nessage);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
@@ -191,9 +194,9 @@ function Add({ token }) {
         <div className="flex gap-3">
           <div
             onClick={() =>
-              setSizes((prev) =>
+              setSizes(prev =>
                 prev.includes("S")
-                  ? prev.filter((item) => item !== "S")
+                  ? prev.filter(item => item !== "S")
                   : [...prev, "S"]
               )
             }
@@ -209,9 +212,9 @@ function Add({ token }) {
 
           <div
             onClick={() =>
-              setSizes((prev) =>
+              setSizes(prev =>
                 prev.includes("M")
-                  ? prev.filter((item) => item !== "M")
+                  ? prev.filter(item => item !== "M")
                   : [...prev, "M"]
               )
             }
@@ -227,9 +230,9 @@ function Add({ token }) {
 
           <div
             onClick={() =>
-              setSizes((prev) =>
+              setSizes(prev =>
                 prev.includes("L")
-                  ? prev.filter((item) => item !== "L")
+                  ? prev.filter(item => item !== "L")
                   : [...prev, "L"]
               )
             }
@@ -245,9 +248,9 @@ function Add({ token }) {
 
           <div
             onClick={() =>
-              setSizes((prev) =>
+              setSizes(prev =>
                 prev.includes("XL")
-                  ? prev.filter((item) => item !== "XL")
+                  ? prev.filter(item => item !== "XL")
                   : [...prev, "XL"]
               )
             }
@@ -263,9 +266,9 @@ function Add({ token }) {
 
           <div
             onClick={() =>
-              setSizes((prev) =>
+              setSizes(prev =>
                 prev.includes("XXL")
-                  ? prev.filter((item) => item !== "XXL")
+                  ? prev.filter(item => item !== "XXL")
                   : [...prev, "XXL"]
               )
             }
@@ -283,8 +286,8 @@ function Add({ token }) {
 
       <div className="flex gap-2 mt-2">
         <input
-          onChange={() => setBestSeller((prev) => !prev)}
-          checked={bestSeller}
+          onChange={() => setBestSeller(prev => !prev)}
+          checked={bestseller}
           type="checkbox"
           id="bestseller"
         />
