@@ -4,7 +4,8 @@ import axios from "axios";
 import { backendUrl } from "../App";
 import { toast } from "react-toastify";
 
-function Add({ token }) {
+function Add ({token}){
+
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -15,17 +16,22 @@ function Add({ token }) {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("Men");
   const [subCategory, setSubCategory] = useState("Topwear");
-  const [bestseller, setBestSeller] = useState(false);
+  const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+     if (!token) {
+    toast.error("You are not authorized. Please log in.");
+    return;
+    }
+
     try {
       const formData = new FormData();
 
       formData.append("name", name);
-      formData.append("descritpion", description);
+      formData.append("descritption", description);
       formData.append("price", price);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
@@ -286,7 +292,7 @@ function Add({ token }) {
 
       <div className="flex gap-2 mt-2">
         <input
-          onChange={() => setBestSeller(prev => !prev)}
+          onChange={() => setBestseller(prev => !prev)}
           checked={bestseller}
           type="checkbox"
           id="bestseller"

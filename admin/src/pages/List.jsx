@@ -8,12 +8,13 @@ const List = ({ token }) => {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/product/list");
+      const response = await axios.get(backendUrl + '/api/product/list');
+      console.log("API Response:", response.data); // Debug API response
 
       if (response.data.success) {
         setList(response.data.products);
       } else {
-        toast.error(response.data.products);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
@@ -42,8 +43,8 @@ const List = ({ token }) => {
   };
 
   useEffect(() => {
-    fetchList();
-  }, []);
+    fetchList()
+  },[]);
 
   return (
     <>
@@ -65,7 +66,7 @@ const List = ({ token }) => {
             key={index}
           >
             <img className="w-12" src={item.image[0]} alt="" />
-            <p>{item.name}</p>
+            <p>{item.name}</p>  
             <p>{item.category}</p>
             <p>
               {currency}

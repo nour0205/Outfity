@@ -36,7 +36,9 @@ name , description , price , category , subCategory , sizes , bestseller
             date: Date.now()
 
         }
+        
         console.log({productData});
+
         const product = new productModel(productData)
         await product.save()
         
@@ -52,7 +54,7 @@ name , description , price , category , subCategory , sizes , bestseller
   const listProducts = async (req,res) => {
     try{
         const products = await productModel.find({})
-        res.json({success: true , message: products})
+        res.json({success: true , products})
 
     }catch (error ){
         console.log(error)
