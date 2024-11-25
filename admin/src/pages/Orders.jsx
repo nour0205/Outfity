@@ -1,11 +1,7 @@
-import React from "react"
+import React from "react";
 
 function Orders() {
-  return (
-    <div>
-      hello my name is khalillllll
-    </div>
-  )
+  return <div>hello my name is nour hentatiiiiiiiiii</div>;
 }
 
-export default Orders
+export default Orders;
