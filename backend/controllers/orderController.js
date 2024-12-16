@@ -54,28 +54,29 @@ const placeOrderVisa = async (req, res) => {
 };
 
 // PLACING ORDERS USING RAZORPAY METHOD
-const palceOrderPaypal = async (req, res) => {try {
-  const { userId, items, amount, address } = req.body;
+const palceOrderPaypal = async (req, res) => {
+  try {
+    const { userId, items, amount, address } = req.body;
 
-  const orderData = {
-    userId,
-    items,
-    address,
-    amount,
-    paymentMethod: "Paypal",
-    date: Date.now(),
-  };
+    const orderData = {
+      userId,
+      items,
+      address,
+      amount,
+      paymentMethod: "Paypal",
+      date: Date.now(),
+    };
 
-  const newOrder = new orderModel(orderData);
-  await newOrder.save();
+    const newOrder = new orderModel(orderData);
+    await newOrder.save();
 
-  await userModel.findByIdAndUpdate(userId, { cartData: {} });
+    await userModel.findByIdAndUpdate(userId, { cartData: {} });
 
-  res.json({ success: true, message: "Order Placed with Paypal" });
-} catch (error) {
-  console.log(error);
-  res.json({ success: false, message: error.message });
-}
+    res.json({ success: true, message: "Order Placed with Paypal" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
 
 // ALL ORDERS DATA FOR ADMIN PANEL
@@ -115,6 +116,34 @@ const updateStatus = async (req, res) => {
   }
 };
 
+const deleteItem = async (req, res) => {
+  try {
+    const { id } = req.params; // Item ID
+    const order = await orderModel.findOne({ "items._id": id });
+
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Item not found in any order" });
+    }
+    order.items = order.items.filter((item) => item._id.toString() !== id);
+
+    if (order.items.length === 0) {
+      await orderModel.deleteOne({ _id: order._id });
+      return res.json({
+        success: true,
+        message: "Order deleted as it had no remaining items",
+      });
+    }
+
+    await order.save();
+    res.json({ success: true, message: "Item removed successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export {
   placeOrder,
   placeOrderVisa,
@@ -122,4 +151,5 @@ export {
   allOrders,
   userOrders,
   updateStatus,
+  deleteItem,
 };

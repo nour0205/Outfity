@@ -8,6 +8,7 @@ import {
   allOrders,
   userOrders,
   updateStatus,
+  deleteItem,
 } from "../controllers/orderController.js";
 
 const orderRouter = express.Router();
@@ -22,6 +23,7 @@ orderRouter.post("/visa", authUser, placeOrderVisa);
 orderRouter.post("/paypal", authUser, palceOrderPaypal);
 
 // User Feature
-orderRouter.post("/userorders", authUser, userOrders);
+orderRouter.get("/userorders", authUser, userOrders);
+orderRouter.delete("/:id", authUser, deleteItem);
 
 export default orderRouter;
