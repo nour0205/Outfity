@@ -17,19 +17,6 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-    const currency = '$';
-    const delivery_fee = 10;
-    const [search, setSearch] = useState('');
-    const [showSearch, setShowSearch] = useState(false);
-    const [cartItems, setCartItems] = useState({});
-
-    const [products, setProducts] = useState([]);
-    const [token, setToken] = useState('');
-
-
-    const navigate = useNavigate();
-=======
   // Load cart from localStorage on initialization
   useEffect(() => {
     if (token) {
@@ -39,7 +26,6 @@ const ShopContextProvider = (props) => {
       }
     }
   }, [token]);
->>>>>>> fcaf8d8dc9a4cdd83592a94b5975b6e62d439a52
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
@@ -102,17 +88,6 @@ const ShopContextProvider = (props) => {
     return totalCount;
   };
 
-<<<<<<< HEAD
-    const value = {
-        products, currency, delivery_fee,
-        search, setSearch, showSearch, setShowSearch,
-        cartItems, addToCart, 
-        getCartCount, updateQuantity,
-
-
-        getCartAmount, navigate, backenUrl,
-        setToken,token
-=======
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
 
@@ -131,7 +106,6 @@ const ShopContextProvider = (props) => {
         console.log(error);
         toast.error(error.message);
       }
->>>>>>> fcaf8d8dc9a4cdd83592a94b5975b6e62d439a52
     }
   };
 
