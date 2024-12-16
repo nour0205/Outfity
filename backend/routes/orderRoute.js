@@ -3,8 +3,8 @@ import adminAuth from "../middleware/adminAuth.js";
 import authUser from "../middleware/auth.js";
 import {
   placeOrder,
-  placeOrderStripe,
-  palceOrderRazorpay,
+  placeOrderVisa,
+  palceOrderPaypal,
   allOrders,
   userOrders,
   updateStatus,
@@ -18,8 +18,8 @@ orderRouter.post("/status", adminAuth, updateStatus);
 
 // Payment Features
 orderRouter.post("/place", authUser, placeOrder);
-orderRouter.post("/stripe", authUser, placeOrderStripe);
-orderRouter.post("/razorpay", authUser, palceOrderRazorpay);
+orderRouter.post("/visa", authUser, placeOrderVisa);
+orderRouter.post("/paypal", authUser, palceOrderPaypal);
 
 // User Feature
 orderRouter.post("/userorders", authUser, userOrders);

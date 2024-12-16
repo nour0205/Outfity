@@ -4,8 +4,7 @@ import axios from "axios";
 import { backendUrl } from "../App";
 import { toast } from "react-toastify";
 
-function Add ({token}){
-
+function Add({ token }) {
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -22,16 +21,16 @@ function Add ({token}){
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-     if (!token) {
-    toast.error("You are not authorized. Please log in.");
-    return;
+    if (!token) {
+      toast.error("You are not authorized. Please log in.");
+      return;
     }
 
     try {
       const formData = new FormData();
 
       formData.append("name", name);
-      formData.append("descritption", description);
+      formData.append("description", description);
       formData.append("price", price);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
@@ -47,20 +46,19 @@ function Add ({token}){
         backendUrl + "/api/product/add",
         formData,
         { headers: { token } }
-        
       );
 
-      console.log(response.data)
+      console.log(response.data);
 
       if (response.data.success) {
         toast.success(response.data.message);
-        setName('');
-        setDescription('');
+        setName("");
+        setDescription("");
         setImage1(false);
         setImage2(false);
         setImage3(false);
         setImage4(false);
-        setPrice('');
+        setPrice("");
       } else {
         toast.error(response.data.message);
       }
@@ -200,9 +198,9 @@ function Add ({token}){
         <div className="flex gap-3">
           <div
             onClick={() =>
-              setSizes(prev =>
+              setSizes((prev) =>
                 prev.includes("S")
-                  ? prev.filter(item => item !== "S")
+                  ? prev.filter((item) => item !== "S")
                   : [...prev, "S"]
               )
             }
@@ -218,9 +216,9 @@ function Add ({token}){
 
           <div
             onClick={() =>
-              setSizes(prev =>
+              setSizes((prev) =>
                 prev.includes("M")
-                  ? prev.filter(item => item !== "M")
+                  ? prev.filter((item) => item !== "M")
                   : [...prev, "M"]
               )
             }
@@ -236,9 +234,9 @@ function Add ({token}){
 
           <div
             onClick={() =>
-              setSizes(prev =>
+              setSizes((prev) =>
                 prev.includes("L")
-                  ? prev.filter(item => item !== "L")
+                  ? prev.filter((item) => item !== "L")
                   : [...prev, "L"]
               )
             }
@@ -254,9 +252,9 @@ function Add ({token}){
 
           <div
             onClick={() =>
-              setSizes(prev =>
+              setSizes((prev) =>
                 prev.includes("XL")
-                  ? prev.filter(item => item !== "XL")
+                  ? prev.filter((item) => item !== "XL")
                   : [...prev, "XL"]
               )
             }
@@ -272,9 +270,9 @@ function Add ({token}){
 
           <div
             onClick={() =>
-              setSizes(prev =>
+              setSizes((prev) =>
                 prev.includes("XXL")
-                  ? prev.filter(item => item !== "XXL")
+                  ? prev.filter((item) => item !== "XXL")
                   : [...prev, "XXL"]
               )
             }
@@ -292,7 +290,7 @@ function Add ({token}){
 
       <div className="flex gap-2 mt-2">
         <input
-          onChange={() => setBestseller(prev => !prev)}
+          onChange={() => setBestseller((prev) => !prev)}
           checked={bestseller}
           type="checkbox"
           id="bestseller"

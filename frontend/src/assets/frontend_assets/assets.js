@@ -54,6 +54,7 @@ import p_img50 from "./p_img50.png";
 import p_img51 from "./p_img51.png";
 import p_img52 from "./p_img52.png";
 
+import Outfity from "./Outfity.png";
 import nour from "./nour.jpg";
 import logo from "./logo.png";
 import hero_img from "./hero_img.png";
@@ -72,9 +73,12 @@ import about_img from "./about_img.png";
 import contact_img from "./contact_img.png";
 import razorpay_logo from "./razorpay_logo.png";
 import stripe_logo from "./stripe_logo.png";
+import visa_logo from "./Visa.png"
+import paypal_logo from "./Paypal.png"
 import cross_icon from "./cross_icon.png";
 
 export const assets = {
+  Outfity,
   nour,
   logo,
   hero_img,
@@ -93,6 +97,8 @@ export const assets = {
   contact_img,
   razorpay_logo,
   stripe_logo,
+  visa_logo,
+  paypal_logo,
   cross_icon,
 };
 

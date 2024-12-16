@@ -17,7 +17,30 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
 
+  // Load cart from localStorage on initialization
+  useEffect(() => {
+    if (token) {
+      const storedCart = localStorage.getItem(`cart_${token}`);
+      if (storedCart) {
+        setCartItems(JSON.parse(storedCart));
+      }
+    }
+  }, [token]);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem(`cart_${token}`, JSON.stringify(cartItems));
+    }
+  }, [cartItems, token]);
+
   const addToCart = async (itemId, size) => {
+    if (!token) {
+      toast.error("You need to log in to add items to the cart.");
+      navigate("/login");
+      return;
+    }
+    
     if (!size) {
       toast.error("Select Product Size");
       return;
