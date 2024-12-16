@@ -1,5 +1,5 @@
 import React from "react";
-import { assets } from "../assets/frontend_assets/assets";
+import ThreeDModel from "./ThreeDModel"; // Import the 3D model component
 
 export default function Hero() {
   return (
@@ -23,7 +23,9 @@ export default function Hero() {
         </div>
       </div>
       {/* Hero Right Side */}
-      <img className='w-full sm:w-1/2' src={assets.nour} alt="" /> 
+      <div className="w-full sm:w-1/2 flex items-center justify-center">
+        <ThreeDModel /> {/* Replace the image with the 3D model */}
+      </div>
     </div>
   );
 }
