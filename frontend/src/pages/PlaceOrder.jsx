@@ -66,7 +66,7 @@ const PlaceOrder = () => {
       switch (method) {
         // API Calls for COD
         case "cod":
-          const response = await axios.post(
+          var response = await axios.post(
             backendUrl + "/api/order/place",
             orderData,
             { headers: { token } }
@@ -77,7 +77,34 @@ const PlaceOrder = () => {
           } else {
             toast.error(response.data.message);
           }
-
+          break;
+        // API Calls for Visa
+        case "visa":
+          var response = await axios.post(
+            backendUrl + "/api/order/visa",
+            orderData,
+            { headers: { token } }
+          );
+          if (response.data.success) {
+            setCartItems({});
+            navigate("/orders");
+          } else {
+            toast.error(response.data.message);
+          }
+          break;
+        // API Calls for Paypal
+        case "paypal":
+          var response = await axios.post(
+            backendUrl + "/api/order/paypal",
+            orderData,
+            { headers: { token } }
+          );
+          if (response.data.success) {
+            setCartItems({});
+            navigate("/orders");
+          } else {
+            toast.error(response.data.message);
+          }
           break;
 
         default:
@@ -199,37 +226,37 @@ const PlaceOrder = () => {
           {/* ---------- Payment Method Selection ---------- */}
           <div className="flex gap-3 flex-col lg:flex-row">
             <div
-              onClick={() => setMethod("stripe")}
+              onClick={() => setMethod("visa")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
                 className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "stripe" ? "bg-green-400" : ""
+                  method === "visa" ? "bg-green-400" : ""
                 }`}
               ></p>
-              <img className="h-5 mx-4" src={assets.stripe_logo} alt="" />
+              <img className="h-10 mx-4" src={assets.visa_logo} alt="" />
             </div>
             <div
-              onClick={() => setMethod("razorpay")}
+              onClick={() => setMethod("paypal")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
                 className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "razorpay" ? "bg-green-400" : ""
+                  method === "paypal" ? "bg-green-400" : ""
                 }`}
               ></p>
-              <img className="h-5 mx-4" src={assets.razorpay_logo} alt="" />
+              <img className="h-8 mx-4" src={assets.paypal_logo} alt="" />
             </div>
             <div
               onClick={() => setMethod("cod")}
               className="flex item-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
+                className={`min-w-3.5 h-3.5 border rounded-full mt-3 ${
                   method === "cod" ? "bg-green-400" : ""
                 }`}
               ></p>
-              <p className="text-gray-500 text-sm font-medum mx-4">
+              <p className="text-gray-500 text-m font-medium mx-4 mt-2">
                 CASH ON DELIVERY
               </p>
             </div>

@@ -12,7 +12,6 @@ const placeOrder = async (req, res) => {
       address,
       amount,
       paymentMethod: "COD",
-      payment: "false",
       date: Date.now(),
     };
 
@@ -29,10 +28,55 @@ const placeOrder = async (req, res) => {
 };
 
 // PLACING ORDERS USING STRIPE METHOD
-const placeOrderStripe = async (req, res) => {};
+const placeOrderVisa = async (req, res) => {
+  try {
+    const { userId, items, amount, address } = req.body;
+
+    const orderData = {
+      userId,
+      items,
+      address,
+      amount,
+      paymentMethod: "Visa",
+      date: Date.now(),
+    };
+
+    const newOrder = new orderModel(orderData);
+    await newOrder.save();
+
+    await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+    res.json({ success: true, message: "Order Placed with Visa" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // PLACING ORDERS USING RAZORPAY METHOD
-const palceOrderRazorpay = async (req, res) => {};
+const palceOrderPaypal = async (req, res) => {try {
+  const { userId, items, amount, address } = req.body;
+
+  const orderData = {
+    userId,
+    items,
+    address,
+    amount,
+    paymentMethod: "Paypal",
+    date: Date.now(),
+  };
+
+  const newOrder = new orderModel(orderData);
+  await newOrder.save();
+
+  await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+  res.json({ success: true, message: "Order Placed with Paypal" });
+} catch (error) {
+  console.log(error);
+  res.json({ success: false, message: error.message });
+}
+};
 
 // ALL ORDERS DATA FOR ADMIN PANEL
 const allOrders = async (req, res) => {
@@ -73,8 +117,8 @@ const updateStatus = async (req, res) => {
 
 export {
   placeOrder,
-  placeOrderStripe,
-  palceOrderRazorpay,
+  placeOrderVisa,
+  palceOrderPaypal,
   allOrders,
   userOrders,
   updateStatus,
