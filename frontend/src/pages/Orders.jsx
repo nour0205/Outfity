@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
@@ -14,7 +15,7 @@ const Orders = () => {
         return null;
       }
 
-      const response = await axios.post(
+      const response = await axios.get(
         backendUrl + "/api/order/userorders",
         {},
         { headers: { token } }
@@ -33,6 +34,30 @@ const Orders = () => {
         setOrderData(allOrdersItem.reverse());
       }
     } catch (error) {}
+  };
+
+  const deleteItem = async function (itemId, orderId) {
+    try {
+      const response = await axios.delete(`${backendUrl}/api/order/${itemId}`, {
+        headers: { token },
+      });
+      if (response.data.success) {
+        setOrderData(
+          orderData.map((order) => {
+            if (order._id === orderId) {
+              order.items = order.items.filter((item) => item._id !== itemId);
+            }
+            return order;
+          })
+        );
+        toast.success("Item removed");
+      } else {
+        toast.error("Failed to remove item.");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error removing item.");
+    }
   };
 
   useEffect(() => {
@@ -87,6 +112,16 @@ const Orders = () => {
                 className="border px-4 py-2 text-sm font-medium rounded-sm"
               >
                 Track Order
+              </button>
+              <button
+                onClick={() => {
+                  deleteItem(item._id).then(() => {
+                    loadOrderData();
+                  });
+                }}
+                className="bg-red-500 text-white border px-4 py-2 text-sm font-medium rounded-sm"
+              >
+                Remove Item
               </button>
             </div>
           </div>
