@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const ShopContext = createContext();
 
@@ -14,23 +15,23 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(() => Cookies.get("token") || "");
   const navigate = useNavigate();
 
-  // Load cart from localStorage on initialization
+  // Load cart from cookies on initialization
   useEffect(() => {
     if (token) {
-      const storedCart = localStorage.getItem(`cart_${token}`);
+      const storedCart = Cookies.get(`cart_${token}`);
       if (storedCart) {
         setCartItems(JSON.parse(storedCart));
       }
     }
   }, [token]);
 
-  // Save cart to localStorage whenever it changes
+  // Save cart to cookies whenever it changes
   useEffect(() => {
     if (token) {
-      localStorage.setItem(`cart_${token}`, JSON.stringify(cartItems));
+      Cookies.set(`cart_${token}`, JSON.stringify(cartItems), { expires: 7 });
     }
   }, [cartItems, token]);
 
@@ -40,7 +41,7 @@ const ShopContextProvider = (props) => {
       navigate("/login");
       return;
     }
-    
+
     if (!size) {
       toast.error("Select Product Size");
       return;
@@ -159,11 +160,11 @@ const ShopContextProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!token && localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
-      getUserCart(localStorage.getItem("token"));
+    if (!token && Cookies.get("token")) {
+      setToken(Cookies.get("token"));
+      getUserCart(Cookies.get("token"));
     }
-  });
+  }, [token]);
 
   const value = {
     products,

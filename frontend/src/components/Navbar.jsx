@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { Link, NavLink } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
@@ -15,16 +16,18 @@ function Navbar() {
   } = useContext(ShopContext);
 
   const logout = () => {
-    navigate("/login");
-    localStorage.removeItem("token");
+    Cookies.remove("token");
     setToken("");
     setCartItems({});
+    navigate("/login");
   };
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
+
         <img src={assets.Outfity} className="w-36" alt="Logo" />
+
       </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1">

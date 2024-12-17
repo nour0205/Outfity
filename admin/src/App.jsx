@@ -8,16 +8,17 @@ import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "js-cookie";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-export const currency = '$';
+export const currency = 'TND';
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):'');
+  const [token, setToken] = useState(() => Cookies.get("token") || "");
 
-  useEffect (()=>{
-    localStorage.setItem('token',token)
-  },[token])
+  useEffect(() => {
+    if (token) Cookies.set("token", token, { expires: 7 });
+  }, [token]);
 
   return (
     <div className="bg-gray-50 min-h-screen">
