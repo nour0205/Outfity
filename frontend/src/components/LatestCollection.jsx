@@ -19,7 +19,7 @@ const LatestCollection = () => {
         <div className='text-center py-8 text-3xl'>
         <Title text1={'LATEST'} text2={'COLLECTIONS'}/>
         <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600 '>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque doloribus quo aperiam dicta explicabo soluta voluptas corrupti ea exercitationem. Ipsum at ipsam dolorem nostrum quo repellendus quod, officiis maxime ab!
+        Step into a world of elegance and style with our latest collections. From bold designs to timeless classics, find the perfect look for every occasion.
         </p>
         </div>
         {/*Rendring Products */}

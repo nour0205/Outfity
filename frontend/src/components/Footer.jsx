@@ -7,10 +7,7 @@ const Footer = () => {
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
         <div>
           <p className="w-full md:w-2/3 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            laudantium, cupiditate sit quo quisquam exercitationem quibusdam
-            inventore, magnam in consequatur voluptatibus aliquid, vero tempore
-            odio eius accusamus error adipisci a.
+          At Outfity, we are dedicated to delivering high-quality, stylish, and sustainable fashion for all. Explore our collections and enjoy a seamless shopping experience with exceptional customer support. Join our community and redefine your wardrobe with timeless pieces.
           </p>
         </div>
         <div>
