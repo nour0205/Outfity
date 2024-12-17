@@ -22,7 +22,7 @@ const Contact = () => {
             Tunis <br /> Tunisia
           </p>
           <p className="text-gray-500">
-            Tel: +216 28424670 <br /> Email: admin@outfity.com
+            Tel: +216 28424670 <br /> Email: noura.kouider@outfity.com
           </p>
           <p className="font-semibold text-xl text-gray-600">
             Careers at Outfity
