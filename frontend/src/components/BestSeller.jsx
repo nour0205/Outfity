@@ -19,7 +19,7 @@ const BestSeller = () => {
         <div className='text-center py-8 text-3xl'>
             <Title text1={'BEST'} text2={'SELLERS'}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quaerat doloribus quae consequatur expedita aut atque laudantium natus. Distinctio error totam facere repudiandae perferendis, pariatur est nam mollitia id voluptates.
+            Loved by you, celebrated by us. Explore our bestselling outfits that have become wardrobe staples for fashion-forward individuals. Shop now to own the pieces everyone’s talking about.
             </p>
         </div>
         {/*Rendring Products */}
