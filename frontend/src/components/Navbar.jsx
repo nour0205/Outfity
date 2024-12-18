@@ -86,14 +86,14 @@ function Navbar() {
             {getCartCount()}
           </p>
         </Link>
-        {/* Admin Login Icon */}
+       
         <a
           href="https://outfity-admin.onrender.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-500 hover:text-gray-700"
         >
-          {/* Person Icon */}
+      
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -108,7 +108,7 @@ function Navbar() {
               d="M15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0"
             />
           </svg>
-          {/* Admin Text */}
+          
           <span className="text-sm font-medium">Admin</span>
         </a>
 
@@ -120,7 +120,6 @@ function Navbar() {
         />
       </div>
 
-      {/* Sidebar for Small Screens */}
       <div
         className={`absolute top-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"

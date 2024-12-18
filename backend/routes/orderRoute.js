@@ -13,16 +13,13 @@ import {
 
 const orderRouter = express.Router();
 
-// Admin Features
 orderRouter.post("/list", adminAuth, allOrders);
 orderRouter.post("/status", adminAuth, updateStatus);
 
-// Payment Features
 orderRouter.post("/place", authUser, placeOrder);
 orderRouter.post("/visa", authUser, placeOrderVisa);
 orderRouter.post("/paypal", authUser, palceOrderPaypal);
 
-// User Feature
 orderRouter.get("/userorders", authUser, userOrders);
 orderRouter.delete("/:id", authUser, deleteItem);
 

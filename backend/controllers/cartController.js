@@ -1,6 +1,5 @@
 import userModel from "../models/userModel.js";
 
-// ADD PRODUCTS TO USER CART
 const addToCart = async (req, res) => {
   try {
     const { userId, itemId, size } = req.body;
@@ -27,7 +26,6 @@ const addToCart = async (req, res) => {
   }
 };
 
-// UPDATE USER CART
 const updateCart = async (req, res) => {
   try {
     const { userId, itemId, size, quantity } = req.body;
@@ -45,7 +43,6 @@ const updateCart = async (req, res) => {
   }
 };
 
-// GET USER CART DATA
 const getUserCart = async (req, res) => {
   try {
     const { userId } = req.body;

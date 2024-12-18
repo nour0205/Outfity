@@ -1,7 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
-// PLACING ORDERS USING COD METHOD
 const placeOrder = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
@@ -27,7 +26,6 @@ const placeOrder = async (req, res) => {
   }
 };
 
-// PLACING ORDERS USING STRIPE METHOD
 const placeOrderVisa = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
@@ -53,7 +51,6 @@ const placeOrderVisa = async (req, res) => {
   }
 };
 
-// PLACING ORDERS USING RAZORPAY METHOD
 const palceOrderPaypal = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
@@ -79,7 +76,6 @@ const palceOrderPaypal = async (req, res) => {
   }
 };
 
-// ALL ORDERS DATA FOR ADMIN PANEL
 const allOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({});
