@@ -8,53 +8,50 @@ const ThreeDModel = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene, Camera, and Renderer setup
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    camera.position.set(0, 2, 5); // Adjust camera position for better visibility
+    camera.position.set(0, 2, 5); 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(400, 400);
-    renderer.shadowMap.enabled = true; // Enable shadows
+    renderer.shadowMap.enabled = true; 
     containerRef.current.appendChild(renderer.domElement);
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 3); // Bright ambient light
+    
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 5); // Strong directional light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 5); 
     directionalLight.position.set(5, 5, 5);
-    directionalLight.castShadow = true; // Enable shadows for directional light
+    directionalLight.castShadow = true; 
     scene.add(directionalLight);
 
    
 
-    // Load 3D Model
+    
     const loader = new GLTFLoader();
     loader.load(
-      "/models/party_dress.glb", // Path to your 3D model
+      "/models/party_dress.glb", 
       (gltf) => {
         console.log("Model loaded successfully:", gltf);
 
         const model = gltf.scene;
 
-        // Position and scale the model
-        model.position.set(0, -6, 0); // Place the model at the center
-        model.scale.set(0.07, 0.07, 0.07); // Adjust scale for visibility
+       
+        model.position.set(0, -6, 0); 
+        model.scale.set(0.07, 0.07, 0.07); 
         model.traverse((node) => {
-          if (node.isMesh) node.castShadow = true; // Enable shadows for meshes
+          if (node.isMesh) node.castShadow = true; 
         });
         scene.add(model);
-
-        // Debug: Log model properties
         console.log("Model position:", model.position);
         console.log("Model scale:", model.scale);
         console.log("Model details:", model);
 
-        // Animation Loop
         const animate = () => {
           requestAnimationFrame(animate);
-          model.rotation.y += 0.01; // Spin the model around the Y-axis
+          model.rotation.y += 0.01; 
           renderer.render(scene, camera);
         };
         animate();
@@ -65,7 +62,7 @@ const ThreeDModel = () => {
       }
     );
 
-    // Cleanup
+   
     return () => {
       if (renderer) renderer.dispose();
       if (containerRef.current) {

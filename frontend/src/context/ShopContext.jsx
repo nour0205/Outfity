@@ -18,7 +18,7 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState(() => Cookies.get("token") || "");
   const navigate = useNavigate();
 
-  // Load cart from cookies on initialization
+
   useEffect(() => {
     if (token) {
       const storedCart = Cookies.get(`cart_${token}`);
@@ -28,7 +28,7 @@ const ShopContextProvider = (props) => {
     }
   }, [token]);
 
-  // Save cart to cookies whenever it changes
+  
   useEffect(() => {
     if (token) {
       Cookies.set(`cart_${token}`, JSON.stringify(cartItems), { expires: 7 });

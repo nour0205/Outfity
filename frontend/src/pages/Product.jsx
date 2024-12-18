@@ -28,10 +28,9 @@ function Product() {
 
   return productData ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
-      {/*---------- Product Data -----------*/}
+    
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
         
-        {/*---------- Product Images ----------*/}
         <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
             {
@@ -45,7 +44,6 @@ function Product() {
           </div>
         </div>
         
-        {/*---------- Product Info ------------*/}
         <div className='flex-1'>
             <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
             <div className='flex items-center gap-1 mt-2'>
@@ -76,19 +74,7 @@ function Product() {
         </div>
       </div>
 
-      {/*---------- Description & Review Section ---------*/}
-      <div className='mt-20'>
-        <div className='flex'>
-          <b className='border px-5 py-3 text-sm'>Description</b>
-          <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
-        </div>
-        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus non iure obcaecati odit debitis eius tempora veniam laboriosam nobis, modi molestiae saepe officia corporis sequi sunt asperiores, voluptas repellendus aspernatur?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis distinctio perspiciatis, non architecto itaque nemo delectus atque odio iste accusamus. Quos natus sunt vero. Libero illum et adipisci in alias.</p>        
-        </div>
-      </div>
-
-      {/*----------Display Related Products ----------*/}
+      
       <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
 
 

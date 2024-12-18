@@ -22,7 +22,7 @@ const BestSeller = () => {
             Loved by you, celebrated by us. Explore our bestselling outfits that have become wardrobe staples for fashion-forward individuals. Shop now to own the pieces everyone’s talking about.
             </p>
         </div>
-        {/*Rendring Products */}
+
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
             {
                 bestSeller.map((item,index)=>(
