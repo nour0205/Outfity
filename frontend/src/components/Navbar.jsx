@@ -88,7 +88,7 @@ function Navbar() {
         </Link>
        
         <a
-          href="https://outfity-admin.onrender.com/"
+          href="http://localhost:5174/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-500 hover:text-gray-700"
